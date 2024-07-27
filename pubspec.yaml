@@ -27,11 +27,15 @@ dependencies:
     sdk: flutter
   auto_size_text: 3.0.0
   cached_network_image: 3.3.1
+  carousel_slider: 4.2.1
   cloud_firestore: 4.17.3
   cloud_firestore_platform_interface: 6.2.3
   cloud_firestore_web: 3.12.3
   collection: 1.18.0
   csv: 6.0.0
+  firebase_analytics: 10.10.5
+  firebase_analytics_platform_interface: 3.10.6
+  firebase_analytics_web: 0.5.7+5
   firebase_auth: 4.19.5
   firebase_auth_platform_interface: 7.2.6
   firebase_auth_web: 5.11.5
@@ -110,7 +114,7 @@ flutter_launcher_icons:
   web:
     generate: true
   image_path: 'assets/images/app_launcher_icon.png'
-  adaptive_icon_background: '#00000000'
+  adaptive_icon_background: '#ffffff'
   adaptive_icon_foreground: 'assets/images/adaptive_foreground_icon.png'
 
 

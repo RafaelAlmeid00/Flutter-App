@@ -30,6 +30,7 @@ class _Auth2WidgetState extends State<Auth2Widget>
     super.initState();
     _model = createModel(context, () => Auth2Model());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Auth2'});
     _model.tabBarController = TabController(
       vsync: this,
       length: 2,
@@ -672,6 +673,10 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'AUTH2_PAGE_CADASTRE_SE_BTN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Button_auth');
                                                               GoRouter.of(
                                                                       context)
                                                                   .prepareAuthEvent();
@@ -692,18 +697,39 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                 return;
                                                               }
 
+                                                              logFirebaseEvent(
+                                                                  'Button_update_page_state');
                                                               _model.sucessCad =
                                                                   1;
                                                               setState(() {});
+                                                              logFirebaseEvent(
+                                                                  'Button_update_app_state');
                                                               FFAppState()
                                                                       .token =
                                                                   currentJwtToken;
                                                               setState(() {});
+                                                              logFirebaseEvent(
+                                                                  'Button_navigate_to');
 
-                                                              context.goNamedAuth(
-                                                                  'Home',
-                                                                  context
-                                                                      .mounted);
+                                                              context
+                                                                  .pushNamedAuth(
+                                                                'Home',
+                                                                context.mounted,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            300),
+                                                                  ),
+                                                                },
+                                                              );
                                                             },
                                                             text: 'Cadastre-se',
                                                             options:
@@ -837,6 +863,10 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                         FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'AUTH2_CONTINUE_COM_GOOGLE_BTN_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'Button_auth');
                                                                         GoRouter.of(context)
                                                                             .prepareAuthEvent();
                                                                         final user =
@@ -913,6 +943,8 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                               FFButtonWidget(
                                                                             onPressed:
                                                                                 () async {
+                                                                              logFirebaseEvent('AUTH2_PAGE_CONTINUE_COM_APPLE_BTN_ON_TAP');
+                                                                              logFirebaseEvent('Button_auth');
                                                                               GoRouter.of(context).prepareAuthEvent();
                                                                               final user = await authManager.signInWithApple(context);
                                                                               if (user == null) {
@@ -1490,6 +1522,10 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                   16.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'AUTH2_PAGE_ENTRE_BTN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Button_auth');
                                                           GoRouter.of(context)
                                                               .prepareAuthEvent();
 
@@ -1508,9 +1544,27 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                             return;
                                                           }
 
-                                                          context.goNamedAuth(
-                                                              'Home',
-                                                              context.mounted);
+                                                          logFirebaseEvent(
+                                                              'Button_navigate_to');
+
+                                                          context.pushNamedAuth(
+                                                            'Home',
+                                                            context.mounted,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                              ),
+                                                            },
+                                                          );
                                                         },
                                                         text: 'Entre',
                                                         options:
@@ -1633,6 +1687,10 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'AUTH2_CONTINUE_COM_GOOGLE_BTN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Button_auth');
                                                               GoRouter.of(
                                                                       context)
                                                                   .prepareAuthEvent();
@@ -1725,6 +1783,10 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                     FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'AUTH2_PAGE_CONTINUE_COM_APPLE_BTN_ON_TAP');
+                                                                    logFirebaseEvent(
+                                                                        'Button_auth');
                                                                     GoRouter.of(
                                                                             context)
                                                                         .prepareAuthEvent();
@@ -1818,6 +1880,10 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                   16.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'AUTH2_PAGE_ESQUECEU_A_SENHA?_BTN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Button_auth');
                                                           GoRouter.of(context)
                                                               .prepareAuthEvent();
                                                           final user =

@@ -23,6 +23,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'HomePage'});
   }
 
   @override
@@ -196,6 +198,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 alignment: const AlignmentDirectional(0.82, 0.96),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('HOME_PAGE_PAGE_CONTINUAR_BTN_ON_TAP');
+                    logFirebaseEvent('Button_navigate_to');
+
                     context.pushNamed(
                       'Auth2',
                       extra: <String, dynamic>{

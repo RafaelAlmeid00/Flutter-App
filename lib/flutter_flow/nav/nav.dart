@@ -93,6 +93,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Home',
           path: '/home',
           builder: (context, params) => const HomeWidget(),
+        ),
+        FFRoute(
+          name: 'profile',
+          path: '/profile',
+          builder: (context, params) => const ProfileWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -326,7 +331,11 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(
+        hasTransition: true,
+        transitionType: PageTransitionType.fade,
+        duration: Duration(milliseconds: 300),
+      );
 }
 
 class RootPageContext {
