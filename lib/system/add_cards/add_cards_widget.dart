@@ -300,7 +300,7 @@ class _AddCardsWidgetState extends State<AddCardsWidget>
                                               logFirebaseEvent(
                                                   'Image_launch_u_r_l');
                                               await launchURL(
-                                                  'https://login.uber.com/oauth/v2/authorize?client_id=c1KeRPNelYpMOTwObv79D_vIvd8rqEhE&response_type=code&redirect_uri=eaypass://eaypass.com/cards');
+                                                  'https://login.uber.com/oauth/v2/authorize?client_id=c1KeRPNelYpMOTwObv79D_vIvd8rqEhE&response_type=code&scope=request%20profile%20history&redirect_uri=eaypass://eaypass.com');
                                             },
                                             child: ClipRRect(
                                               borderRadius:
@@ -324,6 +324,16 @@ class _AddCardsWidgetState extends State<AddCardsWidget>
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.asset(
+                                              'assets/images/images.png',
+                                              width: 100.0,
+                                              height: 100.0,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                         Card(
                                           clipBehavior:
@@ -334,6 +344,16 @@ class _AddCardsWidgetState extends State<AddCardsWidget>
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.asset(
+                                              'assets/images/favicon.png',
+                                              width: 100.0,
+                                              height: 100.0,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -354,16 +374,15 @@ class _AddCardsWidgetState extends State<AddCardsWidget>
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                      ),
-                                      Card(
-                                        clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        elevation: 4.0,
-                                        shape: RoundedRectangleBorder(
+                                        child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
+                                          child: Image.asset(
+                                            'assets/images/riocard_mais_logotipo_0.jpg',
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Card(
@@ -375,6 +394,37 @@ class _AddCardsWidgetState extends State<AddCardsWidget>
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.asset(
+                                            'assets/images/unnamed.png',
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Card(
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 4.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.asset(
+                                            'assets/images/images.jpg',
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ],

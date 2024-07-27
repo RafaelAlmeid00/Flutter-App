@@ -136,7 +136,7 @@ class _PaymentWidgetState extends State<PaymentWidget>
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                   child: Column(
                     children: [
                       Align(

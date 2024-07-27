@@ -196,7 +196,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 40.0),
                                 child: Text(
-                                  'Atalhos Rápidos',
+                                  'eaypass://eaypass.com${GoRouterState.of(context).uri.toString()}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -442,7 +442,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                   child: Column(
                     children: [
                       Align(

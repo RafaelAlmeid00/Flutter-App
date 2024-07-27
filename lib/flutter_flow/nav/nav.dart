@@ -78,77 +78,79 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/',
           builder: (context, _) =>
               appStateNotifier.loggedIn ? const HomeWidget() : const HomePageWidget(),
+          routes: [
+            FFRoute(
+              name: 'HomePage',
+              path: 'homePage',
+              builder: (context, params) => const HomePageWidget(),
+            ),
+            FFRoute(
+              name: 'Auth2',
+              path: 'auth2',
+              builder: (context, params) => const Auth2Widget(),
+            ),
+            FFRoute(
+              name: 'Home',
+              path: 'home',
+              builder: (context, params) => const HomeWidget(),
+            ),
+            FFRoute(
+              name: 'profile',
+              path: 'profile',
+              builder: (context, params) => const ProfileWidget(),
+            ),
+            FFRoute(
+              name: 'forgetPassword',
+              path: 'forgetPassword',
+              builder: (context, params) => const ForgetPasswordWidget(),
+            ),
+            FFRoute(
+              name: 'settings',
+              path: 'settings',
+              builder: (context, params) => const SettingsWidget(),
+            ),
+            FFRoute(
+              name: 'settingsProfile',
+              path: 'settingsProfile',
+              builder: (context, params) => const SettingsProfileWidget(),
+            ),
+            FFRoute(
+              name: 'settingNotifications',
+              path: 'settingNotifications',
+              builder: (context, params) => const SettingNotificationsWidget(),
+            ),
+            FFRoute(
+              name: 'settingsEmail',
+              path: 'settingsEmail',
+              builder: (context, params) => const SettingsEmailWidget(),
+            ),
+            FFRoute(
+              name: 'Notifications',
+              path: 'notifications',
+              builder: (context, params) => const NotificationsWidget(),
+            ),
+            FFRoute(
+              name: 'Cards',
+              path: 'cards',
+              builder: (context, params) => const CardsWidget(),
+            ),
+            FFRoute(
+              name: 'Payment',
+              path: 'payment',
+              builder: (context, params) => const PaymentWidget(),
+            ),
+            FFRoute(
+              name: 'pay',
+              path: 'pay',
+              builder: (context, params) => const PayWidget(),
+            ),
+            FFRoute(
+              name: 'addCards',
+              path: 'addCards',
+              builder: (context, params) => const AddCardsWidget(),
+            )
+          ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
-        FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'Auth2',
-          path: '/auth2',
-          builder: (context, params) => const Auth2Widget(),
-        ),
-        FFRoute(
-          name: 'Home',
-          path: '/home',
-          builder: (context, params) => const HomeWidget(),
-        ),
-        FFRoute(
-          name: 'profile',
-          path: '/profile',
-          builder: (context, params) => const ProfileWidget(),
-        ),
-        FFRoute(
-          name: 'forgetPassword',
-          path: '/forgetPassword',
-          builder: (context, params) => const ForgetPasswordWidget(),
-        ),
-        FFRoute(
-          name: 'settings',
-          path: '/settings',
-          builder: (context, params) => const SettingsWidget(),
-        ),
-        FFRoute(
-          name: 'settingsProfile',
-          path: '/settingsProfile',
-          builder: (context, params) => const SettingsProfileWidget(),
-        ),
-        FFRoute(
-          name: 'settingNotifications',
-          path: '/settingNotifications',
-          builder: (context, params) => const SettingNotificationsWidget(),
-        ),
-        FFRoute(
-          name: 'settingsEmail',
-          path: '/settingsEmail',
-          builder: (context, params) => const SettingsEmailWidget(),
-        ),
-        FFRoute(
-          name: 'Notifications',
-          path: '/notifications',
-          builder: (context, params) => const NotificationsWidget(),
-        ),
-        FFRoute(
-          name: 'Cards',
-          path: '/cards',
-          builder: (context, params) => const CardsWidget(),
-        ),
-        FFRoute(
-          name: 'Payment',
-          path: '/payment',
-          builder: (context, params) => const PaymentWidget(),
-        ),
-        FFRoute(
-          name: 'pay',
-          path: '/pay',
-          builder: (context, params) => const PayWidget(),
-        ),
-        FFRoute(
-          name: 'addCards',
-          path: '/addCards',
-          builder: (context, params) => const AddCardsWidget(),
-        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 
