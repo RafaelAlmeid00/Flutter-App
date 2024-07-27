@@ -93,8 +93,20 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   color: Colors.black,
                   size: 30.0,
                 ),
-                onPressed: () {
-                  print('IconButton pressed ...');
+                onPressed: () async {
+                  logFirebaseEvent('HOME_PAGE_person_ICN_ON_TAP');
+                  logFirebaseEvent('IconButton_navigate_to');
+
+                  context.pushNamed(
+                    'profile',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: const TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 200),
+                      ),
+                    },
+                  );
                 },
               ),
             ),

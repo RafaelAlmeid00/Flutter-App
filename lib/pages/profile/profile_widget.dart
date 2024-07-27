@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -89,13 +90,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(2.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-                                width: 100.0,
-                                height: 100.0,
-                                fit: BoxFit.cover,
+                            child: AuthUserStreamWidget(
+                              builder: (context) => ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.network(
+                                  currentUserPhoto,
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -145,21 +148,23 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
-                child: Text(
-                  'David Jerome',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).headlineSmallFamily,
-                        color: FlutterFlowTheme.of(context).info,
-                        letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).headlineSmallFamily),
-                      ),
+                child: AuthUserStreamWidget(
+                  builder: (context) => Text(
+                    currentUserDisplayName,
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).headlineSmallFamily,
+                          color: FlutterFlowTheme.of(context).info,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).headlineSmallFamily),
+                        ),
+                  ),
                 ),
               ),
               Text(
-                'David.j@gmail.com',
+                currentUserEmail,
                 style: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
                       color: FlutterFlowTheme.of(context).accent4,
@@ -198,7 +203,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ),
                           ),
                           Text(
-                            'Passenger Documents',
+                            'Documentos',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -242,7 +247,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                             ),
                             Text(
-                              'Tracker Notifications',
+                              'Notificações',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
@@ -284,7 +289,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ),
                           ),
                           Text(
-                            'Help Center',
+                            'FAQ',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -378,7 +383,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Phone Number',
+                                          'Número de Telefone',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -398,7 +403,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'Add Number',
+                                      'Adicionar Número',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -440,7 +445,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Language',
+                                          'Idioma',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -460,7 +465,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'English (eng)',
+                                      'Português Brasil (PT-BR)',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -502,7 +507,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Currency',
+                                          'Moeda',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -522,7 +527,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'US Dollar (\$)',
+                                      'Real (R\$)',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -564,7 +569,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Profile Settings',
+                                          'Configurações',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -584,7 +589,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'Edit Profile',
+                                      'Editar Perfil',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -626,7 +631,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Notification Settings',
+                                          'Configurações de Notificação',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -676,7 +681,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Log out of account',
+                                          'Sair',
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -696,7 +701,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'Log Out?',
+                                      'Deseja Sair?',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
