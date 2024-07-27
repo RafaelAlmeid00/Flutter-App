@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import 'auth2_widget.dart' show Auth2Widget;
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class Auth2Model extends FlutterFlowModel<Auth2Widget> {
   ///  Local state fields for this page.
@@ -17,6 +18,11 @@ class Auth2Model extends FlutterFlowModel<Auth2Widget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
+  // State field(s) for CPF_Create widget.
+  FocusNode? cPFCreateFocusNode;
+  TextEditingController? cPFCreateTextController;
+  final cPFCreateMask = MaskTextInputFormatter(mask: '###.###.###-##');
+  String? Function(BuildContext, String?)? cPFCreateTextControllerValidator;
   // State field(s) for emailAddress_Create widget.
   FocusNode? emailAddressCreateFocusNode;
   TextEditingController? emailAddressCreateTextController;
@@ -48,6 +54,9 @@ class Auth2Model extends FlutterFlowModel<Auth2Widget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
+    cPFCreateFocusNode?.dispose();
+    cPFCreateTextController?.dispose();
+
     emailAddressCreateFocusNode?.dispose();
     emailAddressCreateTextController?.dispose();
 

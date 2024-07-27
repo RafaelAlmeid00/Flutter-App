@@ -29,7 +29,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
     _model.tabBarController = TabController(
       vsync: this,
       length: 3,
-      initialIndex: 1,
+      initialIndex: 0,
     )..addListener(() => setState(() {}));
   }
 
@@ -129,15 +129,25 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                       child: Container(
                         width: double.infinity,
                         height: 150.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
+                        decoration: const BoxDecoration(),
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'HOME_PAGE_ADICIONE_UM_CARTÃO_BTN_ON_TAP');
+                              logFirebaseEvent('Button_navigate_to');
+
+                              context.pushNamed(
+                                'addCards',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                },
+                              );
                             },
                             text: 'Adicione um Cartão',
                             options: FFButtonOptions(
@@ -175,10 +185,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                       child: Container(
                         width: double.infinity,
                         height: 300.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
+                        decoration: const BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -210,10 +217,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                               child: Container(
                                 width: double.infinity,
                                 height: 150.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
+                                decoration: const BoxDecoration(),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -370,8 +374,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                       curve: Curves.elasticOut,
                       width: MediaQuery.sizeOf(context).width * 0.8,
                       height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      decoration: const BoxDecoration(
                         shape: BoxShape.rectangle,
                       ),
                       alignment: const AlignmentDirectional(0.0, 0.0),
@@ -438,78 +441,125 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                 ),
               ),
               Expanded(
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: const Alignment(0.0, 0),
-                      child: TabBar(
-                        labelColor: FlutterFlowTheme.of(context).primaryText,
-                        unselectedLabelColor:
-                            FlutterFlowTheme.of(context).secondaryText,
-                        labelStyle:
-                            FlutterFlowTheme.of(context).titleMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleMediumFamily,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleMediumFamily),
-                                ),
-                        unselectedLabelStyle: const TextStyle(),
-                        indicatorColor: FlutterFlowTheme.of(context).accent1,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            30.0, 0.0, 30.0, 0.0),
-                        tabs: const [
-                          Tab(
-                            text: 'Home',
-                          ),
-                          Tab(
-                            text: 'Cartões',
-                          ),
-                          Tab(
-                            text: 'Pagamento',
-                          ),
-                        ],
-                        controller: _model.tabBarController,
-                        onTap: (i) async {
-                          [
-                            () async {
-                              logFirebaseEvent('HOME_PAGE_Tab_6srnpcnp_ON_TAP');
-                              logFirebaseEvent('Tab_navigate_to');
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: const Alignment(0.0, 0),
+                        child: TabBar(
+                          labelColor: FlutterFlowTheme.of(context).primaryText,
+                          unselectedLabelColor:
+                              FlutterFlowTheme.of(context).secondaryText,
+                          labelStyle: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleMediumFamily,
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleMediumFamily),
+                              ),
+                          unselectedLabelStyle: const TextStyle(),
+                          indicatorColor: FlutterFlowTheme.of(context).accent1,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              30.0, 0.0, 30.0, 0.0),
+                          tabs: const [
+                            Tab(
+                              text: 'Home',
+                            ),
+                            Tab(
+                              text: 'Cartões',
+                            ),
+                            Tab(
+                              text: 'Pagamento',
+                            ),
+                          ],
+                          controller: _model.tabBarController,
+                          onTap: (i) async {
+                            [
+                              () async {
+                                logFirebaseEvent(
+                                    'HOME_PAGE_Tab_6srnpcnp_ON_TAP');
+                                logFirebaseEvent('Tab_navigate_to');
 
-                              context.pushNamed('Home');
-                            },
-                            () async {},
-                            () async {}
-                          ][i]();
-                        },
+                                context.pushNamed(
+                                  'Home',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              () async {
+                                logFirebaseEvent(
+                                    'HOME_PAGE_Tab_fms9esig_ON_TAP');
+                                logFirebaseEvent('Tab_navigate_to');
+
+                                context.pushNamed(
+                                  'Cards',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.rightToLeft,
+                                      duration: Duration(milliseconds: 300),
+                                    ),
+                                  },
+                                );
+                              },
+                              () async {
+                                logFirebaseEvent(
+                                    'HOME_PAGE_Tab_4kmf76dq_ON_TAP');
+                                logFirebaseEvent('Tab_navigate_to');
+
+                                context.pushNamed(
+                                  'Payment',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.rightToLeft,
+                                      duration: Duration(milliseconds: 300),
+                                    ),
+                                  },
+                                );
+                              }
+                            ][i]();
+                          },
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: TabBarView(
-                        controller: _model.tabBarController,
-                        children: [
-                          Container(),
-                          Text(
-                            'Tab View 2',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  fontSize: 32.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
-                          ),
-                          Container(),
-                        ],
+                      Expanded(
+                        child: TabBarView(
+                          controller: _model.tabBarController,
+                          children: [
+                            Container(),
+                            Text(
+                              'Tab View 2',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    fontSize: 32.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                            Container(),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
